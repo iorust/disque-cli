@@ -1,0 +1,32 @@
+name: disque-cli
+version: 0.2.0
+author: Qing Yan <admin@zensh.com>
+args:
+    - config:
+        short: h
+        long: hostname
+        value_name: hostname
+        help: Server hostname (default: 127.0.0.1)
+        required: false
+        takes_value: true
+    - config:
+        short: p
+        long: port
+        value_name: port
+        help: Server port (default: 7711)
+        required: false
+        takes_value: true
+    - config:
+        short: a
+        long: password
+        value_name: password
+        help: Password to use when connecting to the server
+        required: false
+        takes_value: true
+    - config:
+        short: n
+        long: db
+        value_name: db
+        help: Database number
+        required: false
+        takes_value: true
