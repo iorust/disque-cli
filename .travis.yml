@@ -1,7 +1,6 @@
 sudo: false
 language: rust
 rust:
-  - nightly
   - beta
   - stable
 # https://github.com/huonw/travis-cargo
@@ -13,6 +12,11 @@ addons:
       - libdw-dev
       - binutils-dev
 before_script:
+  - |
+    wget https://github.com/antirez/disque/archive/master.tar.gz -O disque-master.tar.gz &&
+    tar xf disque-master.tar.gz && cd disque-master/src/ &&
+    make && PREFIX=../ make install && cd - &&
+    ./disque-master/bin/disque-server &
   - |
     pip install 'travis-cargo<0.2' --user &&
     export PATH=$HOME/.local/bin:$PATH
@@ -27,5 +31,3 @@ env:
   global:
     # override the default `--features unstable` used for the nightly branch (optional)
     - TRAVIS_CARGO_NIGHTLY_FEATURE=""
-services:
-  - disque-server
