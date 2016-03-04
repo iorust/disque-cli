@@ -11,7 +11,7 @@ use disque_cli::{create_client};
 
 fn main() {
     let matches = App::new("disque-cli")
-        .version("0.1.0")
+        .version("0.1.1")
         .author("Qing Yan <admin@zensh.com>")
         .arg(Arg::with_name("hostname")
             .short("h")
