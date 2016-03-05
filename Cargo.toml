@@ -1,6 +1,6 @@
 [package]
 name = "disque-cli"
-version = "0.1.1"
+version = "0.2.0"
 authors = ["Qing Yan <admin@zensh.com>"]
 description = "Redis CLI."
 documentation = "https://github.com/iorust/disque-cli"
@@ -14,7 +14,7 @@ license = "MIT/Apache-2.0"
 resp = "^0.3.2"
 
 [dependencies.clap]
-version = "^2.1.1"
+version = "^2.1.2"
 default-features = false
 features = ["yaml"]
 
