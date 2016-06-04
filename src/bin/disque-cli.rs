@@ -7,11 +7,11 @@ use std::io::prelude::*;
 use std::str::FromStr;
 use clap::{Arg, App};
 
-use disque_cli::{create_client};
+use disque_cli::{create_client, Client};
 
 fn main() {
     let matches = App::new("disque-cli")
-        .version("0.2.0")
+        .version("0.2.1")
         .author("Qing Yan <admin@zensh.com>")
         .arg(Arg::with_name("hostname")
             .short("h")
@@ -47,7 +47,17 @@ fn main() {
         hostname = _hostname;
     }
 
-    let mut client = create_client(hostname, port, password).expect("Failed to connect");
+    let mut client: Client = match create_client(hostname, port, password) {
+        Ok(cli) => {
+            println!("Disque [{}]:{} connected.", hostname, port);
+            cli
+        }
+        Err(err) => {
+            println!("Disque [{}]:{} connect failed. {}", hostname, port, err);
+            return
+        }
+    };
+
     let stdin = io::stdin();
     let mut stdout = io::stdout();
     let mut stderr = io::stderr();
